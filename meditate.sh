@@ -39,6 +39,19 @@ else
 fi
 
 $CONTEMPLATE
-while inotifywait -e modify --exclude "\#.*\#" -q -r koans; do
-    $CONTEMPLATE
-done
+
+watch() {
+    os=`uname -s`
+    # MacOS	
+    if [ "$os" == "Darwin" ]; then
+	fswatch koans/ | (while read; do $CONTEMPLATE; done)
+    else
+	while inotifywait -e modify --exclude "\#.*\#" -q -r koans; do
+    	    $CONTEMPLATE
+        done
+    fi
+}
+
+watch
+
+  

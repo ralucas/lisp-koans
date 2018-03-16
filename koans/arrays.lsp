@@ -28,8 +28,9 @@
             (setf (aref chess-board x y) :black)
             (setf (aref chess-board x y) :white)
             )))
+    (write-line (aref chess-board 0 0))
     (assert-true (typep chess-board 'array))
-    (assert-equal (aref chess-board 0 0) ___)
+    (assert-equal (aref chess-board 0 0) ())
     (assert-equal (aref chess-board 2 3) ___)
     "array-rank returns the number of dimensions of the array"
     (assert-equal ___ (array-rank chess-board))
